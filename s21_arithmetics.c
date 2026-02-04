@@ -1,7 +1,7 @@
-/* Copyright (c) 2025 Tolstenev Gleb */
+/* Copyright (c) 2026 Tolstenev Gleb */
 
 /*
- * s21_arithmetics.c |
+ * s21_arithmetics.c | Файл с исходным кодом арифметических функций
  */
 
 #include "s21_decimal.h"

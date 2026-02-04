@@ -1,7 +1,7 @@
-/* Copyright (c) 2025 Tolstenev Gleb */
+/* Copyright (c) 2026 Tolstenev Gleb */
 
 /*
- * s21_decimal.h | The library to work with s21_decimal numbers
+ * s21_decimal.h | Заголовочный файл библиотеки по работе с числами s21_decimal
  */
 
 #ifndef S21_DECIMAL_H
