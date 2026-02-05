@@ -11,12 +11,15 @@
 
 #include "../print_decimal/src/print_decimal.h"
 
+#define SIZE_BIG_DECIMAL 6  // см. README.md
+#define COUNT_BITS_BIG_DECIMAL 192
+
 typedef struct {
   unsigned int bits[4];
 } s21_decimal;
 
 typedef struct {
-  unsigned int bits[8];
+  unsigned int bits[SIZE_BIG_DECIMAL];
   unsigned int scale;
 } s21_big_decimal;
 
