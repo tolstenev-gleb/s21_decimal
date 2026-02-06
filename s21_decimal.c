@@ -218,6 +218,53 @@ int s21_compare_big_decimals(s21_big_decimal big_1,
 }
 
 /**
+ * @brief Находит индекс старшего бита
+ * @param ptr_big указатель на s21_big_decimal
+ * @return Индекс старшего бита
+ */
+unsigned s21_get_index_of_highest_bit(s21_big_decimal* ptr_big) {
+  int bit = 0, i = COUNT_BITS_BIG_DECIMAL;
+  while (bit == 0 && i >= 0) {
+    bit = s21_get_big_bit(ptr_big, i);
+    i--;
+  }
+  return i;
+}
+
+/**
+ * @brief Побитовое деление s21_big_decimal
+ * @param dividend делимое
+ * @param divisor делитель
+ * @param big_result указатель на результат (частное)
+ * @param ptr_remainder указатель на остаток от деления
+ */
+void s21_bitwise_div(s21_big_decimal dividend, s21_big_decimal divisor,
+                     s21_big_decimal* big_result,
+                     s21_big_decimal* ptr_remainder) {
+  s21_big_decimal temp_result = {0};
+  s21_big_decimal temp_remainder = {0};
+  unsigned highest_bit = s21_get_index_of_highest_bit(&dividend);
+  for (int i = highest_bit; i >= 0; i--) {
+    s21_shift_left_big(&temp_remainder, 1);
+    if (s21_get_big_bit(&dividend, i)) {
+      s21_set_bit_big(&temp_remainder, 0, 1);
+    }
+    if (s21_compare_big_decimals(temp_remainder, divisor) >= 0) {
+      s21_bitwise_sub(temp_remainder, divisor, &temp_remainder);
+      s21_set_bit_big(&temp_result, i, 1);
+    } else {
+      s21_set_bit_big(&temp_result, i, 0);
+    }
+  }
+  if (big_result != NULL) {
+    *big_result = temp_result;
+  }
+  if (ptr_remainder != NULL) {
+    *ptr_remainder = temp_remainder;
+  }
+}
+
+/**
  * @brief Умножение s21_big_decimal на 10
  * @param ptr_big указатель на s21_big_decimal
  * Реализовано по формуле:

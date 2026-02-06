@@ -29,11 +29,15 @@ void s21_set_bit(s21_decimal* ptr_decimal, unsigned index, unsigned bit);
 void s21_set_bit_big(s21_big_decimal* ptr_big_decimal, unsigned index,
                      unsigned bit);
 void s21_shift_left_big(s21_big_decimal* ptr_big_decimal, int shift);
+unsigned s21_get_index_of_highest_bit(s21_big_decimal* ptr_big);
 
 void s21_bitwise_add(s21_big_decimal value_1, s21_big_decimal value_2,
                      s21_big_decimal* result);
 void s21_bitwise_sub(s21_big_decimal big_1, s21_big_decimal big_2,
                      s21_big_decimal* ptr_result);
+void s21_bitwise_div(s21_big_decimal dividend, s21_big_decimal divisor,
+                     s21_big_decimal* big_result,
+                     s21_big_decimal* ptr_remainder);
 
 int s21_compare_big_decimals(s21_big_decimal big_1, s21_big_decimal big_2);
 void s21_mul_ten_big(s21_big_decimal* ptr_big);
