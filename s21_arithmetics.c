@@ -81,6 +81,33 @@ int s21_compare_big_decimals(s21_big_decimal big_1,
 }
 
 /**
+ * @brief Умножение s21_big_decimal на 10
+ * @param ptr_big указатель на s21_big_decimal
+ * Реализовано по формуле:
+ * x * 10 = x * (2 + 8) = x * 2 + x * 8
+ */
+void s21_mul_ten_big(s21_big_decimal *ptr_big) {
+  // Сдвигаем на 1 - это умножение на 2
+  s21_shift_left_big(ptr_big, 1);
+  s21_big_decimal temp = *ptr_big;  
+  // Сдвигаем ещё на 2 (суммарно - 3) - это умножение на 8
+  s21_shift_left_big(ptr_big, 2);  
+  s21_bitwise_add(temp, *ptr_big, ptr_big);
+}
+
+/**
+ * @brief Умножение s21_big_decimal на 10 несколько раз
+ * @param ptr_big указатель на s21_big_decimal
+ * @param n количество умножений
+ */
+void s21_mul_ten_n_times_big(s21_big_decimal *ptr_big, unsigned n) {
+  while (n > 0) {
+    s21_mul_ten_big(ptr_big);
+    n--;
+  }
+}
+
+/**
  * @brief Проверяет, является ли s21_decimal нулём.
  * Проверяется только значащая часть
  * без учёта знака и коэффициента масштабирования.

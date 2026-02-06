@@ -120,3 +120,22 @@ void s21_set_bit_big(s21_big_decimal* ptr_big_decimal, unsigned index,
   }
   ptr_big_decimal->bits[i] = new_value;
 }
+
+/**
+ * @brief Побитовый сдвиг влево s21_big_decimal,
+ * переданного по указателю на величину shift
+ * @param ptr_big_decimal указатель на s21_big_decimal
+ * @param shift_value величина сдвига
+ */
+void s21_shift_left_big(s21_big_decimal* ptr_big_decimal, int shift) {
+  unsigned memory = 0;
+  for (int i = 0; i < SIZE_BIG_DECIMAL; i++) {
+    unsigned value = ptr_big_decimal->bits[i];
+    // значение текущего int сдвигаем влево на shift и 
+    // добавляем на новые биты часть, которую запомнили с прошлого раза
+    // (для первой итерации она равна нулю)
+    ptr_big_decimal->bits[i] = (value << shift) | memory;
+    // запоминаем сдвигаемую часть текущего int для следующей итерации
+    memory = value >> (32 - shift);  
+  }
+}

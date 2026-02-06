@@ -28,12 +28,16 @@ unsigned s21_get_bit_big(s21_big_decimal value, int index);
 void s21_set_bit(s21_decimal* ptr_decimal, unsigned index, unsigned bit);
 void s21_set_bit_big(s21_big_decimal* ptr_big_decimal, unsigned index,
                      unsigned bit);
+void s21_shift_left_big(s21_big_decimal* ptr_big_decimal, int shift);
 
 void s21_bitwise_add(s21_big_decimal value_1, s21_big_decimal value_2,
                      s21_big_decimal* result);
 void s21_bitwise_sub(s21_big_decimal big_1, s21_big_decimal big_2,
                      s21_big_decimal* ptr_result);
+
 int s21_compare_big_decimals(s21_big_decimal big_1, s21_big_decimal big_2);
+void s21_mul_ten_big(s21_big_decimal* ptr_big);
+void s21_mul_ten_n_times_big(s21_big_decimal* ptr_big, unsigned n);
 
 unsigned int s21_is_zero_decimal(s21_decimal value);
 void s21_clear_decimal_big(s21_big_decimal* ptr_big);
