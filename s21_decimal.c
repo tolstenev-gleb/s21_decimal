@@ -134,12 +134,12 @@ void s21_shift_left_big(s21_big_decimal* ptr_big_decimal, int shift) {
   unsigned memory = 0;
   for (int i = 0; i < SIZE_BIG_DECIMAL; i++) {
     unsigned value = ptr_big_decimal->bits[i];
-    // значение текущего int сдвигаем влево на shift и 
+    // значение текущего int сдвигаем влево на shift и
     // добавляем на новые биты часть, которую запомнили с прошлого раза
     // (для первой итерации она равна нулю)
     ptr_big_decimal->bits[i] = (value << shift) | memory;
     // запоминаем сдвигаемую часть текущего int для следующей итерации
-    memory = value >> (32 - shift);  
+    memory = value >> (32 - shift);
   }
 }
 
@@ -197,8 +197,7 @@ void s21_bitwise_sub(s21_big_decimal big_1, s21_big_decimal big_2,
  * @return -1, если второе число больше первого;
  * @return 0, если первое число равно второму
  */
-int s21_compare_big_decimals(s21_big_decimal big_1,
-                             s21_big_decimal big_2) {
+int s21_compare_big_decimals(s21_big_decimal big_1, s21_big_decimal big_2) {
   int result = 0;
   int bit_1 = 0, bit_2 = 0;
   bool stop = false;
@@ -270,12 +269,12 @@ void s21_bitwise_div(s21_big_decimal dividend, s21_big_decimal divisor,
  * Реализовано по формуле:
  * x * 10 = x * (2 + 8) = x * 2 + x * 8
  */
-void s21_mul_ten_big(s21_big_decimal *ptr_big) {
+void s21_mul_ten_big(s21_big_decimal* ptr_big) {
   // Сдвигаем на 1 - это умножение на 2
   s21_shift_left_big(ptr_big, 1);
-  s21_big_decimal temp = *ptr_big;  
+  s21_big_decimal temp = *ptr_big;
   // Сдвигаем ещё на 2 (суммарно - 3) - это умножение на 8
-  s21_shift_left_big(ptr_big, 2);  
+  s21_shift_left_big(ptr_big, 2);
   s21_bitwise_add(temp, *ptr_big, ptr_big);
 }
 
@@ -284,7 +283,7 @@ void s21_mul_ten_big(s21_big_decimal *ptr_big) {
  * @param ptr_big указатель на s21_big_decimal
  * @param n количество умножений
  */
-void s21_mul_ten_n_times_big(s21_big_decimal *ptr_big, unsigned n) {
+void s21_mul_ten_n_times_big(s21_big_decimal* ptr_big, unsigned n) {
   while (n > 0) {
     s21_mul_ten_big(ptr_big);
     n--;
