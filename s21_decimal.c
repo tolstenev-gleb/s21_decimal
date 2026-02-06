@@ -1,7 +1,7 @@
 /* Copyright (c) 2026 Tolstenev Gleb */
 
 /*
- * s21_arithmetics.c | Файл с исходным кодом арифметических функций
+ * s21_decimal.c | Файл с исходным кодом арифметических функций
  */
 
 #include "s21_decimal.h"
@@ -10,7 +10,8 @@
  * @brief Проверяет бит по индексу index в переменной value типа unsigned int
  * @param value значение переменной
  * @param index индекс проверяемого бита (от 0 до 31)
- * @return 1 - бит установлен; 0 - бит не установлен
+ * @return 1 - бит установлен;
+ * @return 0 - бит не установлен
  */
 unsigned s21_get_bit_int(unsigned value, unsigned index) {
   unsigned bit = 0;
@@ -26,7 +27,8 @@ unsigned s21_get_bit_int(unsigned value, unsigned index) {
  * @brief Проверяет бит по индексу в переменной value типа s21_decimal
  * @param value значение переменной
  * @param index индекс проверяемого бита (от 0 до 127)
- * @return 1 - бит установлен; 0 - бит не установлен
+ * @return 1 - бит установлен;
+ * @return 0 - бит не установлен
  */
 unsigned s21_get_bit(s21_decimal value, int index) {
   unsigned bit = 0;
@@ -44,7 +46,8 @@ unsigned s21_get_bit(s21_decimal value, int index) {
  * @brief Проверяет бит по индексу index в переменной value типа s21_big_decimal
  * @param value значение переменной
  * @param index индекс проверяемого бита (от 0 до 255)
- * @return 1 - бит установлен; 0 - бит не установлен
+ * @return 1 - бит установлен;
+ * @return 0 - бит не установлен
  */
 unsigned s21_get_bit_big(s21_big_decimal value, int index) {
   unsigned bit = 0;
@@ -190,9 +193,9 @@ void s21_bitwise_sub(s21_big_decimal big_1, s21_big_decimal big_2,
  * @brief Побитовое сравнение s21_big_decimal
  * @param big_1 первое число
  * @param big_2 второе число
- * @return 1, если первое число больше второго.
- * @return -1, если второе число больше первого.
- * @return 0, если первое число равно второму.
+ * @return 1, если первое число больше второго;
+ * @return -1, если второе число больше первого;
+ * @return 0, если первое число равно второму
  */
 int s21_compare_big_decimals(s21_big_decimal big_1,
                              s21_big_decimal big_2) {
